@@ -42,6 +42,7 @@ public class ApplicationModel {
         this.environment = getSystemPropertyOrDefault("app.env", "unknown");
         try {
             this.host = InetAddress.getLocalHost().getHostAddress();
+            this.host = "127.0.0.1";
         } catch (UnknownHostException e) {
             // default value for disaster
             this.host = "127.0.0.1";
