@@ -58,12 +58,12 @@ public class SimpleComparator implements Comparator {
             comparator.addDifference(left, right, Difference.Type.FILED_DIFF, paths);
             return;
         }
-
+L
         Class<?> lCs = left.getClass();
         Class<?> rCs = right.getClass();
         if (lCs != rCs) {
             comparator.addDifference(left, right, Difference.Type.TYPE_DIFF, paths);
-            LogUtil.info("class different-Simple :left-expect={},right-actual={}",lCs,rCs);
+            LogUtil.info("class different-Simple :left-actual={},right-expect={}",lCs,rCs);
             return;
         }
         // basic type using == to compare
