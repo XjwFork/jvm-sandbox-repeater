@@ -39,7 +39,7 @@ public class ObjectComparator implements Comparator {
         Class<?> rCs = right.getClass();
         if (lCs != rCs) {
             comparator.addDifference(left, right, Difference.Type.TYPE_DIFF, paths);
-            LogUtil.info("class different:left-expect={},right-actual={}",left,right);
+            LogUtil.info("class different:left-expect={},right-actual={}",lCs,rCs);
             return;
         }
         // dispatch field with reflect access
