@@ -58,7 +58,7 @@ public class SimpleComparator implements Comparator {
             comparator.addDifference(left, right, Difference.Type.FILED_DIFF, paths);
             return;
         }
-L
+
         Class<?> lCs = left.getClass();
         Class<?> rCs = right.getClass();
         if (lCs != rCs) {
