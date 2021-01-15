@@ -6,6 +6,7 @@ import com.alibaba.jvm.sandbox.repeater.aide.compare.path.Path;
 import org.kohsuke.MetaInfServices;
 
 import java.util.List;
+import com.alibaba.jvm.sandbox.repeater.aide.compare.LogUtil;
 
 import static com.alibaba.jvm.sandbox.repeater.aide.compare.TypeUtils.*;
 
@@ -62,6 +63,7 @@ public class SimpleComparator implements Comparator {
         Class<?> rCs = right.getClass();
         if (lCs != rCs) {
             comparator.addDifference(left, right, Difference.Type.TYPE_DIFF, paths);
+            LogUtil.info("class different:left-expect={},right-actual={}",left,right);
             return;
         }
         // basic type using == to compare
