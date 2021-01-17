@@ -64,7 +64,7 @@ public class SimpleComparator implements Comparator {
         if(left.getClass().getSuperclass() == java.lang.Number.class && right.getClass().getSuperclass() == java.lang.Number.class){
             left = new BigDecimal(left.toString());
             right = new BigDecimal(right.toString());
-            if(left.equals(right)){
+            if((new BigDecimal(left.toString())).equals(new BigDecimal(right.toString()))){
                 return;
             }
         }
