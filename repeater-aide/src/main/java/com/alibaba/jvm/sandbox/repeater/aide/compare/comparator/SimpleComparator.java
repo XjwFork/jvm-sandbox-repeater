@@ -71,11 +71,11 @@ public class SimpleComparator implements Comparator {
         Class<?> rCs = right.getClass();
 
         // 如果left,right有一方是Date,另一方是String，则统一转String比对
-        if(lCs == java.lang.Date.class || rCs == java.lang.Date.class){
-            if(left.getClass() == java.lang.Date.class){
+        if(lCs == Date.class || rCs == Date.class){
+            if(left.getClass() == Date.class){
                 left = ((Date)left).getTime()+"";
             }
-            if(right.getClass() == java.lang.Date.class){
+            if(right.getClass() == Date.class){
                 right = ((Date)right).getTime()+"";
             }
             if(left.equals(right)){
