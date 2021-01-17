@@ -5,6 +5,7 @@ import com.alibaba.jvm.sandbox.repeater.aide.compare.Difference;
 import com.alibaba.jvm.sandbox.repeater.aide.compare.path.Path;
 import org.kohsuke.MetaInfServices;
 
+import java.math.BigDecimal;
 import java.util.List;
 import com.alibaba.jvm.sandbox.repeater.aide.compare.LogUtil;
 
@@ -59,8 +60,14 @@ public class SimpleComparator implements Comparator {
             return;
         }
 
+        if(left.getClass().getSuperclass() == java.lang.Number.class && right.getClass().getSuperclass() == java.lang.Number.class){
+            left = new BigDecimal(left.toString());
+            right = new BigDecimal(right.toString());
+        }
         Class<?> lCs = left.getClass();
         Class<?> rCs = right.getClass();
+
+
         if (lCs != rCs) {
             comparator.addDifference(left, right, Difference.Type.TYPE_DIFF, paths);
             LogUtil.info("class different-Simple :left-actual={},right-expect={}",lCs,rCs);
