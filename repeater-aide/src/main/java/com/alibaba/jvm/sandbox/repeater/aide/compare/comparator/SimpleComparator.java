@@ -72,6 +72,7 @@ public class SimpleComparator implements Comparator {
 
         // 如果left,right有一方是Date,另一方是String，则统一转String比对
         if(lCs == Date.class || rCs == Date.class){
+            LogUtil.info("class different-Simple : date transfer");
             if(left instanceof Date){
                 left = ((Date)left).getTime()+"";
             }
@@ -83,6 +84,7 @@ public class SimpleComparator implements Comparator {
             }
         }
 
+        LogUtil.info("class different-Simple :left-actual={},right-expect={}",left,right);
         if (lCs != rCs) {
             comparator.addDifference(left, right, Difference.Type.TYPE_DIFF, paths);
             LogUtil.info("class different-Simple :left-actual={},right-expect={}",lCs,rCs);
