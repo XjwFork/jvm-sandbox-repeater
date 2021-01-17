@@ -72,10 +72,10 @@ public class SimpleComparator implements Comparator {
 
         // 如果left,right有一方是Date,另一方是String，则统一转String比对
         if(lCs == Date.class || rCs == Date.class){
-            if(left.getClass() == Date.class){
+            if(left instanceof Date){
                 left = ((Date)left).getTime()+"";
             }
-            if(right.getClass() == Date.class){
+            if(right instanceof Date){
                 right = ((Date)right).getTime()+"";
             }
             if(left.equals(right)){
