@@ -81,12 +81,13 @@ public class SimpleComparator implements Comparator {
         // basic type using == to compare
         if (isBasicType(lCs, rCs)) {
             comparator.addDifference(left, right, Difference.Type.FILED_DIFF, paths);
-            LogUtil.info("field different-Simple 1 :left ={}|right={}",left,right);
+            LogUtil.info("field different-Simple 2 :left ={}|right={}",left,right);
             return;
         }
         // use equals to compare
         if (!left.equals(right)) {
             comparator.addDifference(left, right, Difference.Type.FILED_DIFF, paths);
+            LogUtil.info("field different-Simple 3 :left ={}|right={}",left,right);
         }
     }
 
