@@ -62,11 +62,8 @@ public class SimpleComparator implements Comparator {
         }
 
         if(left.getClass().getSuperclass() == java.lang.Number.class && right.getClass().getSuperclass() == java.lang.Number.class){
-            left = new BigDecimal(left.toString());
-            right = new BigDecimal(right.toString());
-            if((new BigDecimal(left.toString())).equals(new BigDecimal(right.toString()))){
-                return;
-            }
+            left = new Double(left.toString());
+            right = new Double(right.toString());
         }
         Class<?> lCs = left.getClass();
         Class<?> rCs = right.getClass();
@@ -78,6 +75,9 @@ public class SimpleComparator implements Comparator {
             return;
         }
 
+        if(left.equals(right)){
+            return;
+        }
         // basic type using == to compare
         if (isBasicType(lCs, rCs)) {
             comparator.addDifference(left, right, Difference.Type.FILED_DIFF, paths);
