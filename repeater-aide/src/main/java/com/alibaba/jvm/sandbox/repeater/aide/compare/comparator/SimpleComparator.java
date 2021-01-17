@@ -6,6 +6,7 @@ import com.alibaba.jvm.sandbox.repeater.aide.compare.path.Path;
 import org.kohsuke.MetaInfServices;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import com.alibaba.jvm.sandbox.repeater.aide.compare.LogUtil;
 
@@ -60,14 +61,27 @@ public class SimpleComparator implements Comparator {
             LogUtil.info("field different-Simple 1 :left is null || right is null");
             return;
         }
-
+        // 如果left,right都是数字，统一转Double进行比对，避免因反序列化导致的类型不一致
         if(left.getClass().getSuperclass() == java.lang.Number.class && right.getClass().getSuperclass() == java.lang.Number.class){
             left = new Double(left.toString());
             right = new Double(right.toString());
         }
+
         Class<?> lCs = left.getClass();
         Class<?> rCs = right.getClass();
 
+        // 如果left,right有一方是Date,另一方是String，则统一转String比对
+        if(lCs == java.lang.Date.class || rCs == java.lang.Date.class){
+            if(left.getClass() == java.lang.Date.class){
+                left = ((Date)left).getTime()+"";
+            }
+            if(right.getClass() == java.lang.Date.class){
+                right = ((Date)right).getTime()+"";
+            }
+            if(left.equals(right)){
+                return;
+            }
+        }
 
         if (lCs != rCs) {
             comparator.addDifference(left, right, Difference.Type.TYPE_DIFF, paths);
