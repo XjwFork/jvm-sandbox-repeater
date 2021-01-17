@@ -57,6 +57,7 @@ public class SimpleComparator implements Comparator {
         // null check
         if (left == null || right == null) {
             comparator.addDifference(left, right, Difference.Type.FILED_DIFF, paths);
+            LogUtil.info("field different-Simple 1 :left is null || right is null");
             return;
         }
 
@@ -74,12 +75,13 @@ public class SimpleComparator implements Comparator {
             return;
         }
 
-        if(left.toString().equals(right.toString())){
+        if(left.equals(right)){
             return;
         }
         // basic type using == to compare
         if (isBasicType(lCs, rCs)) {
             comparator.addDifference(left, right, Difference.Type.FILED_DIFF, paths);
+            LogUtil.info("field different-Simple 1 :left ={}|right={}",left,right);
             return;
         }
         // use equals to compare
