@@ -2,6 +2,7 @@ package com.alibaba.jvm.sandbox.repeater.aide.compare.comparator;
 
 import com.alibaba.jvm.sandbox.repeater.aide.compare.Difference;
 import com.alibaba.jvm.sandbox.repeater.aide.compare.IntegratedComparator;
+import com.alibaba.jvm.sandbox.repeater.aide.compare.LogUtil;
 import com.alibaba.jvm.sandbox.repeater.aide.compare.path.Path;
 import org.kohsuke.MetaInfServices;
 
@@ -38,6 +39,7 @@ public class ObjectComparator implements Comparator {
         Class<?> rCs = right.getClass();
         if (lCs != rCs) {
             comparator.addDifference(left, right, Difference.Type.TYPE_DIFF, paths);
+            LogUtil.info("class different -Object:left-actual={},right-expect={}",lCs,rCs);
             return;
         }
         // dispatch field with reflect access
