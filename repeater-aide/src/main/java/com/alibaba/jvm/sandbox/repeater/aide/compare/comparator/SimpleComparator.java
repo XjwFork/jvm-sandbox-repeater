@@ -73,6 +73,10 @@ public class SimpleComparator implements Comparator {
             LogUtil.info("class different-Simple :left-actual={},right-expect={}",lCs,rCs);
             return;
         }
+
+        if(left.toString().equals(right.toString())){
+            return;
+        }
         // basic type using == to compare
         if (isBasicType(lCs, rCs)) {
             comparator.addDifference(left, right, Difference.Type.FILED_DIFF, paths);
