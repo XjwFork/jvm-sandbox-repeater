@@ -116,8 +116,6 @@ public class SimpleComparator implements Comparator {
         }
     }
 
-    private Object stringToDate(String s) {
-    }
 
     @Override
     public boolean support(CompareMode compareMode) {
