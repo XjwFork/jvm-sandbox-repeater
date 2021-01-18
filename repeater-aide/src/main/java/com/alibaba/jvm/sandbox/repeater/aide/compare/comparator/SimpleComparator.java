@@ -1,11 +1,13 @@
 package com.alibaba.jvm.sandbox.repeater.aide.compare.comparator;
 
+import com.alibaba.jvm.sandbox.repeater.aide.compare.DateTransUtils;
 import com.alibaba.jvm.sandbox.repeater.aide.compare.IntegratedComparator;
 import com.alibaba.jvm.sandbox.repeater.aide.compare.Difference;
 import com.alibaba.jvm.sandbox.repeater.aide.compare.path.Path;
 import org.kohsuke.MetaInfServices;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import com.alibaba.jvm.sandbox.repeater.aide.compare.LogUtil;
@@ -72,13 +74,18 @@ public class SimpleComparator implements Comparator {
 
         // 如果left,right有一方是Date,另一方是String，则统一转String比对
         if(lCs == Date.class || rCs == Date.class){
-            if(lCs == Date.class){
-                LogUtil.info("class different-Simple : date transfer1");
-                left = ((Date)left).getTime()+"";
-            }
-            if(rCs == Date.class){
-                LogUtil.info("class different-Simple : date transfer2");
-                right = ((Date)right).getTime()+"";
+
+            try {
+                if(lCs == String.class){
+                    LogUtil.info("class different-Simple : date transfer1");
+                    left = DateTransUtils.stringToDate(left.toString());
+                }
+                if(rCs == String.class){
+                    LogUtil.info("class different-Simple : date transfer2");
+                    right = DateTransUtils.stringToDate(right.toString());;
+                }
+            } catch (ParseException e) {
+                LogUtil.info("class different-Simple : String转Date异常");
             }
 
             LogUtil.info("class different-Simple-date :left-actual={},right-expect={}",left,right);
@@ -107,6 +114,9 @@ public class SimpleComparator implements Comparator {
             comparator.addDifference(left, right, Difference.Type.FILED_DIFF, paths);
             LogUtil.info("field different-Simple 3 :left ={}|right={}",left,right);
         }
+    }
+
+    private Object stringToDate(String s) {
     }
 
     @Override
