@@ -104,6 +104,7 @@ public class RegressServiceImpl implements RegressService {
         regress.setIndex(index + sequence.incrementAndGet());
         regress.setName(name);
         regress.setTimestamp(System.currentTimeMillis());
+        regress.setSeq(new Integer[]{1});
         return regress;
     }
 

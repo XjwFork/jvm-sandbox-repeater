@@ -1,6 +1,7 @@
 package com.alibaba.repeater.console.common.domain;
 
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,6 +21,16 @@ public class Regress implements java.io.Serializable {
     private LocalDateTime localDateTime = LocalDateTime.now();
     private Locale locale = Locale.getDefault();
     private BigDecimal money = new BigDecimal(System.currentTimeMillis());
+    private Integer[] seq ;
+
+    public Integer[] getSeq() {
+        return seq;
+    }
+
+    public void setSeq(Integer[] seq) {
+        this.seq = seq;
+    }
+
 
     public Long getTimestamp() {
         return timestamp;
