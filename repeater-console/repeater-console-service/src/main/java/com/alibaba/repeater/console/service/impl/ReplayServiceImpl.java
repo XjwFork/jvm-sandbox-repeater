@@ -115,7 +115,8 @@ public class ReplayServiceImpl implements ReplayService {
                 }
             } else {
                 replay.setResponse(JacksonUtil.serialize(rm.getResponse()));
-                actual = rm.getResponse();
+                // actual = rm.getResponse();
+                actual = JacksonUtil.deserialize(replay.getResponse(), Object.class);
             }
             replay.setMockInvocation(JacksonUtil.serialize(rm.getMockInvocations()));
             try {
